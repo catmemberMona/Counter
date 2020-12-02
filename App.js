@@ -10,33 +10,36 @@ import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
   Text,
   StatusBar,
   TouchableOpacity,
-  Alert,
+  Button,
+  View,
 } from 'react-native';
 
 
-const App: () => React$Node = () => {
+const App = () => {
   const [count, setCount] = useState(0);
-  // const [tensValue, setTens] = useState(0)
-  // const [atTen, setIsTen] = useState(false);
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <Text style={styles.heading}>Simple Counter</Text>
-        </View>
-        <View style={{flex: 4}}>
+      <StatusBar barStyle="light-content" />
+      <SafeAreaView style={styles.screen}>
+        {/* <View style={styles.counterSection}> */}
           <TouchableOpacity 
             onPress={()=> addOne(count, setCount)}
+            style={styles.clickableCountButton}
           >
-          <Text>{count}</Text>
+            <Text style={styles.countText}>{count}</Text>
           </TouchableOpacity>
-          {/* {atTen && <View>{tensValue + '0'}</View>} */}
+          <View style={{ flexDirection: 'row', flex: .05}}>
+            <View style={{flex: 4}}/>
+            <TouchableOpacity 
+              onPress={() => {setCount(0)}}
+              style={styles.resetBtn}
+            >
+              <Text style={styles.resetText}>Reset</Text>
+            </TouchableOpacity>
+            <View style={{flex: .2}}/>
         </View>
       </SafeAreaView>
     </>
@@ -45,33 +48,42 @@ const App: () => React$Node = () => {
 
 const addOne = (count, setCount) => {
   setCount(count+=1)
-  // if (count % 10 === 0){
-  //   whenTen(count,setCount);
-  // } else {
-  //   setCount(count);
-  // }
 }
 
-// const whenTen = (count, setCount) => {
-//   let tensValue = 0;
-//   tensValue +=1;
-//   setCount(count=0);
-//   return <View>{tensValue + '0'}</View>
-
-// }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'pink',
+  screen: {
+    flex: 1, 
+    backgroundColor: '#472d30'
   },
+  clickableCountButton: {
+    flex: 1,
+    justifyContent: 'center',
+    
+  },
+  countText: {
+    textAlign: 'center',
+    fontSize: 100,
+    color: 'beige',
+    fontWeight: '400',
+  },
+  resetBtn: {
+    flex: 1.3,
+    backgroundColor: '#623d46',
+    borderTopWidth: 2.5,
+    borderBottomWidth: 2.5,
+    borderColor: '#402f39',
+    borderRadius: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
 
-  heading: {
-    color: 'pink',
-    fontSize: 32,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  },
+  resetText: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: '400',
+    color: 'beige',
+    textAlign: 'center'
   },
 });
 
