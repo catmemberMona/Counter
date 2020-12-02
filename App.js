@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 
 
-const App: () => React$Node = () => {
+const App = () => {
   const [count, setCount] = useState(0);
   return (
     <>
